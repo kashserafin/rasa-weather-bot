@@ -30,62 +30,76 @@ nlu:
     - bye bye
     - see you later
 
-- intent: affirm
+- intent: ask_weather_forecast
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - what will the weather be like today?
+    - what's the temperature out there?
+    - what is the temperature outside
+    - temperature outside
+    - forecast
+    - what's the wether
+    - what is the weather in [Warsaw](city) today?
+    - weather forecast in [Berlin](city)
+    - today's forecast in [Paris](city)
+    - weather in [London](city)
+    - temperature in [toronto](city)
+    - [helsinki](city) temperature
+    - [poznan](city) forecst
+    - what's the weather in [Lisbon](city)
+    - how's the weather today in [Goa](city)
+    - What will be weather today in [Warsaw](city)?
 
-- intent: deny
+- intent: weather_alert
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - Are there any weather alerts for my area?
+    - What are the warnings from national weather agencies for today
+    - weather warnings
+    - weather alerts for Warsaw area
+    - expected extreme weather conditions in my surroundings
+    - public weather alerts for San Francisco
+    - next week weather warnings in Iowa
+    - what about any weather alerts?
 
-- intent: mood_great
+- intent: air_pollution
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - What is the current air pollution?
+    - Is air good today?
+    - What's the air quality?
+    - air pollution status
+    - air quality
+    - current aiq
+    - what is the air pollution level
+    - do you know the current air pollution?
 
-- intent: mood_unhappy
+- intent: chitchat/can_you_human
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - Can you dream
+    - Can you eat?
+    - Can you fart?
+    - Do you breathe
+    - Can you get tired?
+    - Can you pee?
+    - Can you poop?
+    - Can you sneeze?
 
-- intent: bot_challenge
+- intent: chitchat/how_old
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - Are you a teenager?
+    - What's your birthday?
+    - Which of us is younger?
+    - What's your age?
+    - What year were you born?
+    - Are you young?
+    - I bet you're old
+    - How old are you?
+
+- intent: chitchat/ask_me_anything
+  examples: |
+    - Can you ask me something about me?
+    - Can you ask me anything about myself?
+    - Can you ask me anything about me?
+    - Can you ask me anything?
+    - Can you ask me something?
+    - Can you ask anything about myself?
+    - Can you ask anything?
+    - Ask me something

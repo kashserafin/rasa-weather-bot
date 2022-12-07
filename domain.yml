@@ -3,31 +3,83 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - ask_weather_forecast
+  - air_pollution
+  - chitchat
+  - weather_alert
+
+entities:
+  - city
+  - GPE
+
+slots:
+  city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: city
+        intent: ask_weather_forecast
+      - type: from_entity
+        entity: city
+        conditions:
+          - active_loop: weather_forecast_form
+      - type: from_entity
+        entity: GPE
+        intent: ask_weather_forecast
+      - type: from_entity
+        entity: GPE
+        conditions:
+          - active_loop: weather_forecast_form
+  city_lat:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 90.0
+    min_value: -90.0
+  city_lon:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 180.0
+    min_value: -180.0
+
+forms:
+  weather_forecast_form:
+    required_slots:
+        - city
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
+  - text: "Hey!"
 
   utter_goodbye:
   - text: "Bye"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_ask_weather_forecast_form_city:
+  - text: "What city would you like to get to know the weather forecast for?"
+
+  utter_weather_alert:
+  - text: Sorry, I can't do that. You must activate global weather alerts push notifications to get weather warnings.
+
+  utter_air_pollution:
+  - text: Sorry, I don't know that one. You must get access to Air Pollution API to learn about air pollution levels.
+
+  utter_chitchat/can_you_human:
+  - text: I don't have a body.
+
+  utter_chitchat/how_old:
+  - text: Age doesn't really apply to me.
+  
+  utter_chitchat/ask_me_anything:
+  - text: I'm better at answering questions.
+
+actions:
+  - action_session_start
+  - action_get_city_coordinates
+  - action_provide_weather_forecast
 
 session_config:
   session_expiration_time: 60

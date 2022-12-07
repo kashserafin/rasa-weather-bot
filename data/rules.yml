@@ -2,12 +2,24 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: Activate form
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: ask_weather_forecast
+  - action: weather_forecast_form
+  - active_loop: weather_forecast_form
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Submit form and query OpenWeather API to provide weather forecast for a given city
+  condition:
+  - active_loop: weather_forecast_form
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - action: weather_forecast_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_get_city_coordinates
+  - action: action_provide_weather_forecast
+
+- rule: Respond to chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
